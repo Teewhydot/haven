@@ -8,6 +8,7 @@ class Assets {
   static const String imagesUserImage = 'assets/images/user_image.png';
   static const String pngsBackEmoji = 'assets/pngs/back_emoji.png';
   static const String pngsChat = 'assets/pngs/chat.png';
+  static const String pngsHeart = 'assets/pngs/heart.png';
   static const String pngsLogo = 'assets/pngs/logo.png';
   static const String pngsLoveLetter = 'assets/pngs/love_letter.png';
   static const String pngsMatch = 'assets/pngs/match.png';
@@ -18,4 +19,10 @@ class Assets {
   static const String pngsPp = 'assets/pngs/pp.png';
   static const String pngsReject = 'assets/pngs/reject.png';
   static const String pngsVerified = 'assets/pngs/verified.png';
+  static const String svgsCards = 'assets/svgs/cards.svg';
+  static const String svgsChatIcon = 'assets/svgs/chat_icon.svg';
+  static const String svgsChatIcon1 = 'assets/svgs/chat_icon1.svg';
+  static const String svgsHeart = 'assets/svgs/heart.svg';
+  static const String svgsHearts = 'assets/svgs/hearts.svg';
+  static const String svgsProfile = 'assets/svgs/profile.svg';
 }

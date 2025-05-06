@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:haven/haven/components/image.dart';
 import 'package:haven/haven/components/scaffold.dart';
 import 'package:haven/haven/core/theme/colors.dart';
@@ -68,14 +69,26 @@ class Dashboard extends StatelessWidget {
           SwipesWidget(),
           56.verticalSpace,
           Row(
+            spacing: 32.w,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              HavenImage(imagePath: Assets.pngsReject, width: 54, height: 54),
-              HavenImage(imagePath: Assets.pngsMatch, width: 72, height: 72),
-              HavenImage(imagePath: Assets.pngsMessage, width: 54, height: 54),
+              GradientCircle(
+                size: 54,
+                bgColor: kSecondaryColor,
+                child: Icon(Ionicons.close, size: 22),
+              ),
+              GradientCircle(size: 72, child: Icon(Ionicons.heart, size: 35)),
+              GradientCircle(
+                size: 54,
+                bgColor: kSecondaryColor,
+                child: SvgPicture.asset(
+                  Assets.svgsChatIcon,
+                  height: 22,
+                  width: 22,
+                ),
+              ),
             ],
           ),
-          39.verticalSpace,
         ],
       ),
     );
@@ -90,7 +103,13 @@ class SwipesWidget extends StatelessWidget {
     return Container(
       height: 460.h,
       width: 1.sw,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30),
+        image: const DecorationImage(
+          image: AssetImage(Assets.imagesUserImage),
+          fit: BoxFit.cover,
+        ),
+      ),
     );
   }
 }
@@ -98,33 +117,20 @@ class SwipesWidget extends StatelessWidget {
 class GradientCircle extends StatelessWidget {
   final Widget child;
   final double size;
-  final Color firstColor, secondColor;
-  final double firstStop, secondStop;
+  final Color bgColor;
 
   const GradientCircle({
     super.key,
     required this.child,
     required this.size,
-    this.firstColor = kSecondaryColor,
-    this.secondColor = kPrimaryColor,
-    this.firstStop = 0.5,
-    this.secondStop = 0.9,
+    this.bgColor = kPrimaryColor500,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: size,
-      height: size,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        gradient: LinearGradient(
-          colors: [firstColor, secondColor],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          stops: [firstStop, secondStop],
-        ),
-      ),
+    return CircleAvatar(
+      radius: size / 2,
+      backgroundColor: bgColor,
       child: child,
     );
   }
