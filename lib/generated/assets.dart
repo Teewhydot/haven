@@ -22,6 +22,8 @@ class Assets {
   static const String svgsCards = 'assets/svgs/cards.svg';
   static const String svgsChatIcon = 'assets/svgs/chat_icon.svg';
   static const String svgsChatIcon1 = 'assets/svgs/chat_icon1.svg';
+  static const String svgsDottedLineDesign =
+      'assets/svgs/dotted_line_design.svg';
   static const String svgsHeart = 'assets/svgs/heart.svg';
   static const String svgsHearts = 'assets/svgs/hearts.svg';
   static const String svgsProfile = 'assets/svgs/profile.svg';

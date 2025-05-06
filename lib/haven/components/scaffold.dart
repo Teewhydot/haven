@@ -42,9 +42,13 @@ class HavenNavBar extends StatelessWidget {
         children: [
           SvgPicture.asset(Assets.svgsCards, height: 22, width: 22),
           SvgPicture.asset(Assets.svgsHearts, height: 22, width: 22),
-          SvgPicture.asset(Assets.svgsHearts, height: 22, width: 22),
-          SvgPicture.asset(Assets.svgsHearts, height: 22, width: 22),
-          SvgPicture.asset(Assets.svgsHearts, height: 22, width: 22),
+          SvgPicture.asset(Assets.svgsChatIcon1, height: 22, width: 22),
+          SvgPicture.asset(
+            Assets.svgsProfile,
+            color: kPrimaryColor500,
+            height: 22,
+            width: 22,
+          ),
         ],
       ),
     );

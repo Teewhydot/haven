@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'haven/features/dashboard/presentation/pages/dashboard.dart';
+import 'package:haven/haven/features/dashboard/presentation/pages/matched.dart';
 
 void main() {
   // debugPaintSizeEnabled = true; // Enables widget outlines
@@ -18,10 +17,7 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: const Dashboard(),
-        );
+        return MaterialApp(debugShowCheckedModeBanner: false, home: Matched());
       },
     );
   }

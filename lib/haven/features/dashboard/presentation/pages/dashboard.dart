@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:haven/haven/components/image.dart';
@@ -75,9 +76,12 @@ class Dashboard extends StatelessWidget {
               GradientCircle(
                 size: 54,
                 bgColor: kSecondaryColor,
-                child: Icon(Ionicons.close, size: 22),
+                child: Icon(Ionicons.close, color: kPrimaryColor500, size: 22),
               ),
-              GradientCircle(size: 72, child: Icon(Ionicons.heart, size: 35)),
+              GradientCircle(
+                size: 72,
+                child: Icon(Ionicons.heart, color: kSecondaryColor, size: 35),
+              ),
               GradientCircle(
                 size: 54,
                 bgColor: kSecondaryColor,
@@ -95,20 +99,68 @@ class Dashboard extends StatelessWidget {
   }
 }
 
-class SwipesWidget extends StatelessWidget {
+class SwipesWidget extends StatefulWidget {
   const SwipesWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
+  State<SwipesWidget> createState() => _SwipesWidgetState();
+}
+
+class _SwipesWidgetState extends State<SwipesWidget> {
+  List<Container> cards = List.generate(
+    10,
+    (index) => Container(
       height: 460.h,
       width: 1.sw,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
-        image: const DecorationImage(
+        image: DecorationImage(
           image: AssetImage(Assets.imagesUserImage),
           fit: BoxFit.cover,
         ),
+      ),
+    ),
+  );
+  int currentIndex = 0; // Track the current top card index
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 460.w,
+      child: CardSwiper(
+        cardsCount: 15,
+        numberOfCardsDisplayed: 3,
+        isLoop: false,
+        padding: EdgeInsets.only(top: 0.h, bottom: 0.h),
+        backCardOffset: Offset(0, 30),
+        allowedSwipeDirection: AllowedSwipeDirection.only(up: true, down: true),
+        onSwipe: (oldIndex, newIndex, direction) {
+          setState(() {
+            currentIndex = newIndex!; // Update the top card index
+          });
+          return true; // Allow the swipe
+        },
+        cardBuilder: (context, index, percentThresholdX, percentThresholdY) {
+          return Container(
+            height: 460.h,
+            width: 1.sw,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              image:
+                  index ==
+                          currentIndex // Check if it's the top card
+                      ? DecorationImage(
+                        image: AssetImage(Assets.imagesUserImage),
+                        fit: BoxFit.cover,
+                      )
+                      : null, // No image for other cards
+              color:
+                  index != currentIndex
+                      ? kSecondaryColor
+                      : null, // Optional placeholder for non-top cards
+            ),
+          );
+        },
       ),
     );
   }
