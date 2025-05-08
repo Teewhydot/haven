@@ -20,7 +20,11 @@ class Matched extends StatelessWidget {
       body: Column(
         children: [
           76.verticalSpace,
-          HavenText(text: "CONGRATS! ", fontSize: 24, color: kPrimaryColor500),
+          HavenText(
+            text: "CONGRATULATIONS! ",
+            fontSize: 24,
+            color: kPrimaryColor500,
+          ),
           21.verticalSpace,
           MatchedWidget(),
           42.verticalSpace,

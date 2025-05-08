@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:haven/haven/app/init.dart';
 
 import 'haven/features/dashboard/presentation/pages/matched.dart';
 
 void main() {
   // debugPaintSizeEnabled = true; // Enables widget outlines
+  AppConfig.init();
   runApp(const MyApp());
 }
 
