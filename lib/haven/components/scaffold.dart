@@ -8,8 +8,14 @@ import '../../generated/assets.dart';
 class HavenScaffold extends StatelessWidget {
   final Widget body;
   final double padding;
+  final bool showNavBar;
 
-  const HavenScaffold({super.key, required this.body, this.padding = 0.0});
+  const HavenScaffold({
+    super.key,
+    required this.body,
+    this.padding = 0.0,
+    this.showNavBar = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +25,8 @@ class HavenScaffold extends StatelessWidget {
           resizeToAvoidBottomInset: false,
           body: Padding(padding: EdgeInsets.all(padding).r, child: body),
         ),
-        Positioned(bottom: 20, left: 55, right: 55, child: HavenNavBar()),
+        if (showNavBar)
+          Positioned(bottom: 20, left: 55, right: 55, child: HavenNavBar()),
       ],
     );
   }
