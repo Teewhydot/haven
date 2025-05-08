@@ -68,30 +68,64 @@ class MatchedWidget extends StatelessWidget {
           Center(child: SvgPicture.asset(Assets.svgsDottedLineDesign)),
 
           Positioned(
-            top: 170,
+            top: 150,
             left: 50,
-            child: HavenImage(
-              imagePath: Assets.imagesImg1,
-              width: 165,
-              height: 255,
+            child: Transform.rotate(
+              angle: -0.2,
+              child: Container(
+                width: 165.w,
+                height: 255.h,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(Assets.imagesUserImage),
+                    fit: BoxFit.cover,
+                  ),
+                  color: kScaffoldBgColorLight,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: kPrimaryColor500.withOpacity(0.1),
+                      blurRadius: 20,
+                      offset: const Offset(0, 10),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
           Positioned(
-            top: 70,
+            top: 50,
             right: 50,
-            child: HavenImage(
-              imagePath: Assets.imagesImg,
-              width: 165,
-              height: 255,
+            child: Transform.rotate(
+              angle: 0.2,
+              child: Container(
+                width: 165.w,
+                height: 255.h,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(Assets.imagesUserImage),
+                    fit: BoxFit.cover,
+                  ),
+                  color: kScaffoldBgColorLight,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: kPrimaryColor500.withOpacity(0.1),
+                      blurRadius: 20,
+                      offset: const Offset(0, 10),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
           Positioned(
-            top: 250,
+            top: 260,
             left: 0,
             right: 0,
             child: GradientCircle(
-              size: 72,
-              child: Icon(Ionicons.heart, color: kSecondaryColor, size: 35),
+              size: 92,
+              child: Icon(Ionicons.heart, color: kSecondaryColor, size: 55),
             ),
           ),
         ],
