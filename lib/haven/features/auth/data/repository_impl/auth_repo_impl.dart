@@ -10,7 +10,7 @@ class AuthRepoImpl implements AuthRepository {
   final authService = GetIt.instance<AuthDataSource>();
 
   @override
-  Future<Either<Failure, Success>> signInWithPhoneNumber(
+  Future<Either<Failure, OtpSentSuccess>> signInWithPhoneNumber(
     String phoneNumber,
   ) async {
     return await authService.signInWithPhoneNumber(phoneNumber);

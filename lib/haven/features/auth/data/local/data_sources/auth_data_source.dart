@@ -7,7 +7,9 @@ import '../../../../../core/services/firebase_service.dart';
 import '../../../../../domain/failures/failures.dart';
 
 abstract class AuthDataSource {
-  Future<Either<Failure, Success>> signInWithPhoneNumber(String phoneNumber);
+  Future<Either<Failure, OtpSentSuccess>> signInWithPhoneNumber(
+    String phoneNumber,
+  );
 
   Future<Either<Failure, UserEntity>> confirmPhoneCode(
     String verificationId,
@@ -20,7 +22,7 @@ class AuthDataSourceFirebase implements AuthDataSource {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   @override
-  Future<Either<Failure, Success>> signInWithPhoneNumber(
+  Future<Either<Failure, OtpSentSuccess>> signInWithPhoneNumber(
     String phoneNumber,
   ) async {
     final result = await _firebaseService.runWithConfig(

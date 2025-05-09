@@ -6,8 +6,8 @@ abstract class Failure {
 abstract class Success {}
 
 class OtpSentSuccess extends Success {
-  final String? verificationId;
-  OtpSentSuccess({this.verificationId});
+  final String verificationId;
+  OtpSentSuccess({required this.verificationId});
 }
 
 class ServerFailure extends Failure {

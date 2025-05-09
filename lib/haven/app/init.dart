@@ -9,9 +9,9 @@ class AppConfig {
     // Initialize app configurations here
     // For example, setting up environment variables, logging, etc.
     WidgetsFlutterBinding.ensureInitialized();
+    setupDIService();
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-    setupDIService();
   }
 }

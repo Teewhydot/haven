@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
 import 'package:haven/haven/components/buttons/buttons.dart';
 import 'package:haven/haven/components/image.dart';
 import 'package:haven/haven/components/scaffold.dart';
 import 'package:haven/haven/components/texts/texts.dart';
 import 'package:haven/haven/core/helpers/extensions.dart';
+import 'package:haven/haven/core/services/navigation_service/nav_config.dart';
 
 import '../../../../../generated/assets.dart';
 
@@ -13,7 +15,9 @@ class IntroScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final nav = GetIt.instance<NavigationService>();
     return HavenScaffold(
+      padding: 0,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -37,7 +41,12 @@ class IntroScreen extends StatelessWidget {
           HavenText(text: " and interests with the world."),
           HavenText(text: "Your exciting adventure starts here! 😉"),
           28.verticalSpace,
-          HavenButton(buttonText: "Get started 😉"),
+          HavenButton(
+            buttonText: "Get started 😉",
+            onPressed: () {
+              nav.navigateTo("/login");
+            },
+          ),
         ],
       ),
     );

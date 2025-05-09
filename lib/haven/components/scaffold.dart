@@ -19,15 +19,15 @@ class HavenScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Scaffold(
-          resizeToAvoidBottomInset: false,
-          body: Padding(padding: EdgeInsets.all(padding).r, child: body),
-        ),
-        if (showNavBar)
-          Positioned(bottom: 20, left: 55, right: 55, child: HavenNavBar()),
-      ],
+    return Scaffold(
+      body: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Padding(padding: EdgeInsets.all(padding).r, child: body),
+          if (showNavBar)
+            Positioned(bottom: 20, left: 55, right: 55, child: HavenNavBar()),
+        ],
+      ),
     );
   }
 }

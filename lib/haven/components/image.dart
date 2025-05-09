@@ -21,27 +21,22 @@ class HavenImage extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: imageAlignment,
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(borderRadius),
-          child:
-              imageType == HavenImageType.asset
-                  ? Image.asset(
-                    imagePath,
-                    width: width.w,
-                    height: height.h,
-                    fit: fit,
-                  )
-                  : Image.network(
-                    imagePath,
-                    width: width.w,
-                    height: height.h,
-                    fit: fit,
-                  ),
-        ),
-      ],
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(borderRadius),
+      child:
+          imageType == HavenImageType.asset
+              ? Image.asset(
+                imagePath,
+                width: width.w,
+                height: height.h,
+                fit: fit,
+              )
+              : Image.network(
+                imagePath,
+                width: width.w,
+                height: height.h,
+                fit: fit,
+              ),
     );
   }
 }

@@ -15,7 +15,10 @@ class Dashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cardSwiperController = CardSwiperController();
+
     return HavenScaffold(
+      showNavBar: true,
       padding: 17,
       body: Column(
         children: [
@@ -67,7 +70,7 @@ class Dashboard extends StatelessWidget {
             ],
           ),
           24.verticalSpace,
-          SwipesWidget(),
+          SwipesWidget(controller: cardSwiperController),
           56.verticalSpace,
           Row(
             spacing: 32.w,
@@ -77,10 +80,16 @@ class Dashboard extends StatelessWidget {
                 size: 54,
                 bgColor: kSecondaryColor,
                 child: Icon(Ionicons.close, color: kPrimaryColor500, size: 22),
+                onTap: () {
+                  cardSwiperController.swipe(CardSwiperDirection.bottom);
+                },
               ),
               GradientCircle(
                 size: 72,
                 child: Icon(Ionicons.heart, color: kSecondaryColor, size: 35),
+                onTap: () {
+                  cardSwiperController.swipe(CardSwiperDirection.top);
+                },
               ),
               GradientCircle(
                 size: 54,
@@ -100,7 +109,9 @@ class Dashboard extends StatelessWidget {
 }
 
 class SwipesWidget extends StatefulWidget {
-  const SwipesWidget({super.key});
+  final CardSwiperController controller;
+
+  const SwipesWidget({super.key, required this.controller});
 
   @override
   State<SwipesWidget> createState() => _SwipesWidgetState();
@@ -108,7 +119,7 @@ class SwipesWidget extends StatefulWidget {
 
 class _SwipesWidgetState extends State<SwipesWidget> {
   List<Container> cards = List.generate(
-    10,
+    30,
     (index) => Container(
       height: 460.h,
       width: 1.sw,
@@ -121,45 +132,21 @@ class _SwipesWidgetState extends State<SwipesWidget> {
       ),
     ),
   );
-  int currentIndex = 0; // Track the current top card index
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 460.w,
       child: CardSwiper(
-        cardsCount: 15,
+        controller: widget.controller,
+        cardsCount: cards.length,
         numberOfCardsDisplayed: 3,
-        isLoop: false,
+        isLoop: true,
         padding: EdgeInsets.only(top: 0.h, bottom: 0.h),
         backCardOffset: Offset(0, 30),
         allowedSwipeDirection: AllowedSwipeDirection.only(up: true, down: true),
-        onSwipe: (oldIndex, newIndex, direction) {
-          setState(() {
-            currentIndex = newIndex!; // Update the top card index
-          });
-          return true; // Allow the swipe
-        },
         cardBuilder: (context, index, percentThresholdX, percentThresholdY) {
-          return Container(
-            height: 460.h,
-            width: 1.sw,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-              image:
-                  index ==
-                          currentIndex // Check if it's the top card
-                      ? DecorationImage(
-                        image: AssetImage(Assets.imagesUserImage),
-                        fit: BoxFit.cover,
-                      )
-                      : null, // No image for other cards
-              color:
-                  index != currentIndex
-                      ? kSecondaryColor
-                      : null, // Optional placeholder for non-top cards
-            ),
-          );
+          return cards[index];
         },
       ),
     );
@@ -170,20 +157,25 @@ class GradientCircle extends StatelessWidget {
   final Widget child;
   final double size;
   final Color bgColor;
+  final VoidCallback? onTap;
 
   const GradientCircle({
     super.key,
     required this.child,
     required this.size,
     this.bgColor = kPrimaryColor500,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: size / 2,
-      backgroundColor: bgColor,
-      child: child,
+    return GestureDetector(
+      onTap: onTap,
+      child: CircleAvatar(
+        radius: size / 2,
+        backgroundColor: bgColor,
+        child: child,
+      ),
     );
   }
 }

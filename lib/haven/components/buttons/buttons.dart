@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:haven/haven/core/theme/colors.dart';
 
-class HavenButton extends StatelessWidget {
+class HavenButton extends StatefulWidget {
   final String buttonText;
   final double fontSize;
   final Color color;
@@ -32,30 +32,39 @@ class HavenButton extends StatelessWidget {
     this.iconSize = 24.0,
     this.borderColor = kPrimaryColor,
   });
+
+  @override
+  State<HavenButton> createState() => _HavenButtonState();
+}
+
+class _HavenButtonState extends State<HavenButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height,
-      width: width,
+      height: widget.height,
+      width: widget.width,
       decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(borderRadius),
-        border: Border.all(color: borderColor),
+        color: widget.color,
+        borderRadius: BorderRadius.circular(widget.borderRadius),
+        border: Border.all(color: widget.borderColor),
       ),
       child: CupertinoButton(
-        onPressed: onPressed,
+        onPressed: widget.onPressed,
         padding: EdgeInsets.zero,
         child: Row(
-          mainAxisAlignment: alignment,
+          mainAxisAlignment: widget.alignment,
           children: [
-            if (icon != null)
-              Padding(padding: const EdgeInsets.only(right: 8.0), child: icon!),
+            if (widget.icon != null)
+              Padding(
+                padding: const EdgeInsets.only(right: 8.0),
+                child: widget.icon!,
+              ),
             Text(
-              buttonText,
+              widget.buttonText,
               style: TextStyle(
-                fontSize: fontSize,
-                color: textColor,
-                fontWeight: fontWeight,
+                fontSize: widget.fontSize,
+                color: widget.textColor,
+                fontWeight: widget.fontWeight,
               ),
             ),
           ],

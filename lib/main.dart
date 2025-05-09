@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:haven/haven/app/init.dart';
+import 'package:haven/haven/core/providers/bloc_providers.dart';
 
-import 'haven/features/dashboard/presentation/pages/matched.dart';
+import 'haven/core/routes/app_routes.dart';
 
 void main() {
   // debugPaintSizeEnabled = true; // Enables widget outlines
   AppConfig.init();
-  runApp(const MyApp());
+  runApp(MultiBlocProvider(providers: blocs, child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -20,7 +23,11 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return MaterialApp(debugShowCheckedModeBanner: false, home: Matched());
+        return GetMaterialApp(
+          initialRoute: "/",
+          getPages: AppRoutes.routes,
+          debugShowCheckedModeBanner: false,
+        );
       },
     );
   }
